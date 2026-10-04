@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { getSupabaseAdmin, isSupabaseConfigured } from "./supabase";
+import { sanitizeTheme } from "./theme";
 import {
   COLLECTIONS,
   type Collection,
@@ -99,13 +100,30 @@ export async function readCollection(
   return (data ?? []).map((row) => row.data as AnyContentItem);
 }
 
+/**
+ * Values that end up in markup (the brand palette becomes CSS custom
+ * properties on `<html>`) are normalized before they are stored, so an invalid
+ * color is corrected at save time rather than silently ignored at render time.
+ */
+function normalizeForWrite(
+  collection: string,
+  data: Record<string, unknown>
+): Record<string, unknown> {
+  if (collection !== "site" || typeof data.theme !== "object" || !data.theme) {
+    return data;
+  }
+  return { ...data, theme: sanitizeTheme(data.theme) };
+}
+
 export async function createItem(
   collection: string,
-  itemData: Record<string, unknown>
+  rawItemData: Record<string, unknown>
 ): Promise<AnyContentItem> {
   if (!isValidCollection(collection)) {
     throw new Error(`Unknown collection "${collection}"`);
   }
+
+  const itemData = normalizeForWrite(collection, rawItemData);
 
   if (!isSupabaseConfigured()) {
     const items = await readJsonFallback(collection);
@@ -142,6 +160,8 @@ export async function updateItem(
   if (!isValidCollection(collection)) {
     throw new Error(`Unknown collection "${collection}"`);
   }
+
+  patch = normalizeForWrite(collection, patch);
 
   if (!isSupabaseConfigured()) {
     const items = await readJsonFallback(collection);

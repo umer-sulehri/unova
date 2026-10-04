@@ -22,6 +22,12 @@
     "businessHours": "Mon – Sat, 10:00 AM – 7:00 PM",
     "mapUrl": "",
     "showTeamSection": true,
+    "theme": {
+      "accent": "#0d83fd",
+      "heading": "#2d465e",
+      "text": "#212529",
+      "lightBg": "#f3f9ff"
+    },
     "socials": {
       "facebook": "",
       "instagram": "",

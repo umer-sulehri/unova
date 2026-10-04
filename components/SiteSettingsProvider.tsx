@@ -4,10 +4,12 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
 } from "react";
+import { sanitizeTheme, themeCssVars } from "@/lib/theme";
 import type { SiteSettings } from "@/lib/types";
 
 type SiteSettingsContextValue = {
@@ -30,6 +32,16 @@ export function SiteSettingsProvider({
   children: ReactNode;
 }) {
   const [settings, setSettings] = useState(initialSettings);
+
+  // Repaint the document whenever the theme changes, so saving in the dashboard
+  // (or refreshing settings on the client) restyles the open page instantly.
+  useEffect(() => {
+    const root = document.documentElement;
+    const vars = themeCssVars(sanitizeTheme(settings.theme));
+    for (const [key, value] of Object.entries(vars)) {
+      root.style.setProperty(key, value);
+    }
+  }, [settings.theme]);
 
   const refresh = useCallback(async () => {
     try {

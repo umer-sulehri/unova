@@ -82,7 +82,7 @@ export default async function AboutHero() {
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/services"
-                className="rounded-full border border-accent bg-accent px-8 py-3 font-medium text-white transition-all duration-300 hover:border-[#0a69ca] hover:bg-[#0a69ca]"
+                className="rounded-full border border-accent bg-accent px-8 py-3 font-medium text-white transition-all duration-300 hover:border-[var(--brand-accent-deep)] hover:bg-[var(--brand-accent-deep)]"
               >
                 Explore Our Services
               </Link>

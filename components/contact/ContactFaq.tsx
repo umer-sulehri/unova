@@ -14,7 +14,7 @@ export default function ContactFaq() {
       <div className="bt-container">
         <div className="grid items-start gap-x-8 gap-y-8 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0a69ca]/[.08] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[.12em] text-[#0a69ca]">
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[var(--brand-accent-deep)]/[.08] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[.12em] text-[var(--brand-accent-deep)]">
               <i className="bi bi-question-circle"></i>
               FAQ
             </span>
@@ -27,7 +27,7 @@ export default function ContactFaq() {
             </p>
             <a
               href="#contact-form"
-              className="inline-flex items-center gap-2 rounded-full border border-[#0a69ca] px-6 py-2.5 font-medium text-[#0a69ca] transition-all duration-300 hover:bg-[#0a69ca] hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-accent-deep)] px-6 py-2.5 font-medium text-[var(--brand-accent-deep)] transition-all duration-300 hover:bg-[var(--brand-accent-deep)] hover:text-white"
             >
               <i className="bi bi-chat-square-text"></i>
               Ask your question
@@ -46,14 +46,14 @@ export default function ContactFaq() {
                         type="button"
                         onClick={() => setOpenIndex(open ? null : idx)}
                         aria-expanded={open}
-                        className={`flex w-full items-center justify-between gap-4 px-6 py-5 text-left text-[16px] font-semibold transition-colors duration-300 hover:text-[#0a69ca] max-md:px-5 ${
-                          open ? "text-[#0a69ca]" : "text-heading"
+                        className={`flex w-full items-center justify-between gap-4 px-6 py-5 text-left text-[16px] font-semibold transition-colors duration-300 hover:text-[var(--brand-accent-deep)] max-md:px-5 ${
+                          open ? "text-[var(--brand-accent-deep)]" : "text-heading"
                         }`}
                       >
                         {faq.q}
                         <i
                           className={`bi bi-chevron-right shrink-0 text-base transition-transform duration-300 ${
-                            open ? "rotate-90 text-[#0a69ca]" : ""
+                            open ? "rotate-90 text-[var(--brand-accent-deep)]" : ""
                           }`}
                         ></i>
                       </button>

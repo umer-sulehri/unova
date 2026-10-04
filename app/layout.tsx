@@ -10,6 +10,7 @@ import AosProvider from "@/components/AosProvider";
 import JsonLd from "@/components/seo/JsonLd";
 import { SiteSettingsProvider } from "@/components/SiteSettingsProvider";
 import { getSiteSettings } from "@/lib/site";
+import { sanitizeTheme, themeCssVars } from "@/lib/theme";
 import {
   OG_IMAGE,
   SITE_DESCRIPTION,
@@ -119,12 +120,15 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export const viewport: Viewport = {
-  themeColor: "#0d83fd",
-  colorScheme: "light",
-  width: "device-width",
-  initialScale: 1,
-};
+export async function generateViewport(): Promise<Viewport> {
+  const settings = await getSiteSettings();
+  return {
+    themeColor: sanitizeTheme(settings.theme).accent,
+    colorScheme: "light",
+    width: "device-width",
+    initialScale: 1,
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -133,8 +137,12 @@ export default async function RootLayout({
 }>) {
   const settings = await getSiteSettings();
 
+  // Brand palette as CSS custom properties: the first paint is already themed,
+  // so there is no flash of the default blue before hydration.
+  const themeVars = themeCssVars(settings.theme) as React.CSSProperties;
+
   return (
-    <html lang="en">
+    <html lang="en" style={themeVars}>
       <body
         className={`${roboto.variable} ${nunito.variable} ${inter.variable} antialiased`}
       >

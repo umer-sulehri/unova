@@ -98,6 +98,14 @@ export interface SiteAddress {
  * Single-record collection (id 1) holding the global brand data rendered in the
  * header, footer, contact section and structured data.
  */
+/** Brand colors, injected as CSS custom properties on <html>. */
+export interface SiteTheme {
+  accent: string;
+  heading: string;
+  text: string;
+  lightBg: string;
+}
+
 export interface SiteSettings {
   id: number;
   siteName: string;
@@ -115,6 +123,8 @@ export interface SiteSettings {
   mapUrl: string;
   /** Dashboard switch: renders the team section on the About page. */
   showTeamSection: boolean;
+  /** Brand palette editable from the dashboard (validated in lib/theme.ts). */
+  theme: SiteTheme;
   socials: {
     facebook: string;
     instagram: string;

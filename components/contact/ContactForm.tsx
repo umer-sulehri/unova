@@ -2,7 +2,7 @@ import { getSiteSettings } from "@/lib/site";
 import { telHref, whatsappHref } from "@/lib/site-shared";
 
 const inputClass =
-  "form-control !rounded-xl !border-[rgba(33,37,41,0.14)] !bg-[#fbfcfd] !px-4 !py-3 text-[15px] transition focus:!border-[#0a69ca] focus:!bg-white";
+  "form-control !rounded-xl !border-[rgba(33,37,41,0.14)] !bg-[#fbfcfd] !px-4 !py-3 text-[15px] transition focus:!border-[var(--brand-accent-deep)] focus:!bg-white";
 
 const labelClass =
   "mb-2 block text-[13px] font-semibold text-[rgba(33,37,41,0.75)]";
@@ -61,7 +61,7 @@ export default async function ContactForm() {
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="contact-name" className={labelClass}>
-              Your name <span className="text-[#0a69ca]">*</span>
+              Your name <span className="text-[var(--brand-accent-deep)]">*</span>
             </label>
             <input
               id="contact-name"
@@ -76,7 +76,7 @@ export default async function ContactForm() {
 
           <div>
             <label htmlFor="contact-email" className={labelClass}>
-              Email address <span className="text-[#0a69ca]">*</span>
+              Email address <span className="text-[var(--brand-accent-deep)]">*</span>
             </label>
             <input
               id="contact-email"
@@ -141,7 +141,7 @@ export default async function ContactForm() {
 
           <div className="sm:col-span-2">
             <label htmlFor="contact-message" className={labelClass}>
-              Project details <span className="text-[#0a69ca]">*</span>
+              Project details <span className="text-[var(--brand-accent-deep)]">*</span>
             </label>
             <textarea
               id="contact-message"
@@ -166,8 +166,8 @@ export default async function ContactForm() {
           <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
             <button
               type="submit"
-              className="group inline-flex items-center gap-2 rounded-full px-8 py-3.5 font-medium text-white shadow-[0_10px_25px_rgba(10,95,184,0.35)] transition-all duration-300 hover:-translate-y-0.5"
-              style={{ background: "linear-gradient(135deg, #0a5fb8 0%, #0a69ca 100%)" }}
+              className="group inline-flex items-center gap-2 rounded-full px-8 py-3.5 font-medium text-white shadow-[0_10px_25px_color-mix(in_srgb,var(--brand-accent)_35%,transparent)] transition-all duration-300 hover:-translate-y-0.5"
+              style={{ background: "linear-gradient(135deg, var(--brand-accent) 0%, var(--brand-accent-deep) 100%)" }}
             >
               <i className="bi bi-send-fill"></i>
               Send Message
@@ -187,7 +187,7 @@ export default async function ContactForm() {
           {settings.phone && (
             <a
               href={telHref(settings.phone)}
-              className="inline-flex items-center gap-2 text-[rgba(33,37,41,0.7)] transition hover:text-[#0a69ca]"
+              className="inline-flex items-center gap-2 text-[rgba(33,37,41,0.7)] transition hover:text-[var(--brand-accent-deep)]"
             >
               <i className="bi bi-telephone-fill text-accent"></i>
               {settings.phone}

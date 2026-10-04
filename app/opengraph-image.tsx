@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getSiteSettings } from "@/lib/site";
+import { mixHex, sanitizeTheme } from "@/lib/theme";
 
 /**
  * A static alt is required by the file convention, so it stays brand-neutral:
@@ -11,6 +12,7 @@ export const contentType = "image/png";
 
 export default async function OpengraphImage() {
   const settings = await getSiteSettings();
+  const theme = sanitizeTheme(settings.theme);
   const initial = settings.siteName.charAt(0).toUpperCase() || "U";
 
   return new ImageResponse(
@@ -23,8 +25,13 @@ export default async function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background:
-            "linear-gradient(135deg, #0d83fd 0%, #0a69ca 55%, #062d4d 100%)",
+          // Same palette as the live site, darkened because the renderer has
+          // no CSS color-mix.
+          background: `linear-gradient(135deg, ${theme.accent} 0%, ${mixHex(
+            theme.accent,
+            "#000000",
+            0.35
+          )} 55%, ${mixHex(theme.accent, "#000000", 0.7)} 100%)`,
           color: "white",
           fontFamily: "sans-serif",
         }}

@@ -47,10 +47,10 @@ export default async function ContactDetails() {
 
   return (
     <div
-      className="relative h-full overflow-hidden rounded-3xl p-8 text-white shadow-[0_25px_60px_rgba(10,79,160,0.35)] lg:p-10"
+      className="relative h-full overflow-hidden rounded-3xl p-8 text-white shadow-[0_25px_60px_color-mix(in_srgb,var(--brand-accent)_38%,transparent)] lg:p-10"
       style={{
         background:
-          "linear-gradient(155deg, #0a5fb8 0%, #0a4fa0 45%, #073b73 100%)",
+          "linear-gradient(155deg, var(--brand-accent) 0%, var(--brand-accent-deep) 45%, var(--brand-accent-deepest) 100%)",
       }}
       data-aos="fade-up"
       data-aos-delay="200"
@@ -92,7 +92,7 @@ export default async function ContactDetails() {
                   : {})}
                 className="group flex items-start gap-4 rounded-2xl bg-white/10 p-4 transition-all duration-300 hover:bg-white/20"
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/15 text-lg transition-colors duration-300 group-hover:bg-white group-hover:text-[#0a5fb8]">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/15 text-lg transition-colors duration-300 group-hover:bg-white group-hover:text-[var(--brand-accent-deep)]">
                   <i className={`bi ${item.icon}`}></i>
                 </span>
                 <span className="min-w-0">
@@ -128,7 +128,7 @@ export default async function ContactDetails() {
               href={whatsappHref(settings)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#0a5fb8] transition-all duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[var(--brand-accent-deep)] transition-all duration-300 hover:-translate-y-0.5"
             >
               <i className="bi bi-whatsapp text-lg"></i>
               WhatsApp
@@ -163,7 +163,7 @@ export default async function ContactDetails() {
                   rel="noopener noreferrer"
                   aria-label={social.label}
                   title={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-[#0a5fb8]"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-[var(--brand-accent-deep)]"
                 >
                   <i className={`bi ${social.icon}`}></i>
                 </a>

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+@theme inline {
   /* Breakpoints mirrored from Bootstrap 5.3 */
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -13,22 +13,38 @@
   --font-heading: var(--font-nunito), sans-serif;
   --font-nav: var(--font-inter), sans-serif;
 
-  /* Colors from main.css :root tokens */
-  --color-default: #212529;
-  --color-heading: #2d465e;
-  --color-accent: #0d83fd;
+  /* Brand colors come from admin-managed settings: `lib/theme.ts` writes the
+     --brand-* custom properties onto <html>, and `inline` makes every utility
+     reference them so a dashboard change repaints the whole site. */
+  --color-default: var(--brand-text);
+  --color-heading: var(--brand-heading);
+  --color-accent: var(--brand-accent);
   --color-surface: #ffffff;
   --color-contrast: #ffffff;
-  --color-light-bg: #f3f9ff;
+  --color-light-bg: var(--brand-light-bg);
 }
 
 @layer base {
   :root {
     scroll-behavior: smooth;
+
+    /* Fallbacks + derived shades. The four --brand-* values are overwritten
+       inline on <html> by the root layout (see lib/theme.ts). */
+    --brand-accent: #0d83fd;
+    --brand-heading: #2d465e;
+    --brand-text: #212529;
+    --brand-light-bg: #f3f9ff;
+    /* Readable label color for filled accent surfaces. */
+    --on-accent: #ffffff;
+    /* Darker accent for small text, hover states and gradients. */
+    --brand-accent-deep: color-mix(in srgb, var(--brand-accent) 78%, #000);
+    --brand-accent-deepest: color-mix(in srgb, var(--brand-accent) 62%, #000);
+    /* Tinted accent for soft backgrounds, e.g. bg-accent/[.08] equivalents. */
+    --brand-accent-soft: color-mix(in srgb, var(--brand-accent) 8%, #fff);
   }
 
   body {
-    color: #212529;
+    color: var(--brand-text);
     background-color: #ffffff;
     font-family: var(--font-sans);
     font-size: 1rem;
@@ -40,7 +56,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: #2d465e;
+    color: var(--brand-heading);
     font-family: var(--font-heading);
     font-weight: 500;
     line-height: 1.2;
@@ -63,11 +79,15 @@
   p { margin-top: 0; margin-bottom: 1rem; }
 
   a {
-    color: #0d83fd;
+    color: var(--brand-accent);
     text-decoration: none;
     transition: 0.3s;
   }
-  a:hover { color: rgba(13, 131, 253, 0.75); text-decoration: none; }
+  a:hover {
+    color: color-mix(in srgb, var(--brand-accent) 75%, transparent);
+    text-decoration: none;
+  }
+
 
   ul { margin-top: 0; margin-bottom: 1rem; padding-left: 2rem; }
 
@@ -110,7 +130,7 @@
 
   /* Global section wrapper (from main.css) */
   .section {
-    color: #212529;
+    color: var(--brand-text);
     background-color: #ffffff;
     padding: 60px 0;
     scroll-margin-top: 90px;
@@ -140,8 +160,8 @@
   }
   .btn:hover { color: var(--btn-color); }
 
-  .btn-primary { --btn-color: #fff; background-color: #0d6efd; border-color: #0d6efd; }
-  .btn-primary:hover { background-color: #0b5ed7; border-color: #0a58ca; color: #fff; }
+  .btn-primary { --btn-color: var(--on-accent); background-color: var(--brand-accent); border-color: var(--brand-accent); }
+  .btn-primary:hover { background-color: var(--brand-accent-deep); border-color: var(--brand-accent-deep); color: var(--on-accent); }
 
   .btn-secondary { --btn-color: #fff; background-color: #6c757d; border-color: #6c757d; }
   .btn-secondary:hover { background-color: #5c636a; border-color: #565e64; color: #fff; }
@@ -161,8 +181,8 @@
   .btn-dark { --btn-color: #fff; background-color: #212529; border-color: #212529; }
   .btn-dark:hover { background-color: #42464d; border-color: #1a1e21; color: #fff; }
 
-  .btn-outline-primary { --btn-color: #0d6efd; border-color: #0d6efd; }
-  .btn-outline-primary:hover { background-color: #0d6efd; color: #fff; }
+  .btn-outline-primary { --btn-color: var(--brand-accent); border-color: var(--brand-accent); }
+  .btn-outline-primary:hover { background-color: var(--brand-accent); color: var(--on-accent); }
 
   .btn-outline-warning { --btn-color: #ffc107; border-color: #ffc107; }
   .btn-outline-warning:hover { background-color: #ffc107; color: #000; }
@@ -194,7 +214,7 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: var(--brand-text);
     background-color: #ffffff;
     background-clip: padding-box;
     border: 1px solid rgba(33, 37, 41, 0.1);
@@ -322,4 +342,17 @@
 .service-package:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------------------------------------------------------------------------
+   Unlayered on purpose: Tailwind emits utilities in `@layer utilities`, and
+   layered rules always lose to utilities no matter the specificity. Filled
+   accent buttons and links therefore resolve their label color from the
+   accent's luminance (`--on-accent`), so a light accent stays readable instead
+   of leaving white text on yellow.
+   --------------------------------------------------------------------------- */
+a.bg-accent,
+button.bg-accent,
+span.bg-accent {
+  color: var(--on-accent);
 }

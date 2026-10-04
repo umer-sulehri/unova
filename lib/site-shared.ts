@@ -4,6 +4,7 @@
 // pulls Node APIs into the bundle. Anything a React client component needs —
 // factory defaults, formatters and the social field list — lives here instead.
 
+import { THEME_DEFAULTS, sanitizeTheme } from "./theme";
 import type { SiteSettings } from "./types";
 
 /** Factory defaults, used until an admin saves the settings record. */
@@ -33,6 +34,7 @@ export function defaultSiteSettings(): SiteSettings {
     businessHours: "Mon – Sat, 10:00 AM – 7:00 PM",
     mapUrl: "",
     showTeamSection: true,
+    theme: { ...THEME_DEFAULTS },
     socials: {
       facebook: "",
       instagram: "",
@@ -59,6 +61,8 @@ export function withDefaults(
     // `?? base` so a legacy record (or an explicit null) can never hide the
     // section by accident.
     showTeamSection: stored.showTeamSection ?? base.showTeamSection,
+    // Never trust stored colors: they are written into a <style>-like context.
+    theme: sanitizeTheme(stored.theme),
     address: { ...base.address, ...(stored.address ?? {}) },
     socials: { ...base.socials, ...(stored.socials ?? {}) },
   };

@@ -76,7 +76,7 @@ export default async function Hero() {
               <div className="flex flex-wrap">
                 <a
                   href="/contact"
-                  className="mx-1 rounded-full border border-accent bg-accent px-10 py-3 font-medium text-white transition-all duration-300 hover:border-[#0a69ca] hover:bg-[#0a69ca] sm:mr-2"
+                  className="mx-1 rounded-full border border-accent bg-accent px-10 py-3 font-medium text-white transition-all duration-300 hover:border-[var(--brand-accent-deep)] hover:bg-[var(--brand-accent-deep)] sm:mr-2"
                 >
                   Contact us
                 </a>

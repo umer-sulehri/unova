@@ -1,12 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSiteSettings } from "@/components/SiteSettingsProvider";
 import { SOCIAL_FIELDS } from "@/lib/site-shared";
-import type { SiteSettings } from "@/lib/types";
+import {
+  THEME_DEFAULTS,
+  contrastRatio,
+  isDefaultTheme,
+  sanitizeTheme,
+  themeCssVars,
+} from "@/lib/theme";
+import type { SiteSettings, SiteTheme } from "@/lib/types";
 import {
   Button,
+  ColorInput,
   Field,
   FormSection,
   ImageField,
@@ -23,13 +31,38 @@ export default function SettingsManager({
   initialSettings: SiteSettings;
 }) {
   const router = useRouter();
-  const { setSettings, refresh } = useSiteSettings();
+  const { settings, setSettings, refresh } = useSiteSettings();
   const [draft, setDraft] = useState<SiteSettings>(initialSettings);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
   const patch = (values: Partial<SiteSettings>) =>
     setDraft((current) => ({ ...current, ...values }));
+
+  /**
+   * Theme picking is a live preview: the picked palette is pushed into the
+   * provider, which rewrites the `--brand-*` custom properties on <html>, so
+   * the whole page repaints immediately. Nothing is written until Save.
+   */
+  const [preview, setPreview] = useState<SiteTheme | null>(null);
+  const theme = sanitizeTheme(preview ?? draft.theme);
+  const accentOnWhite = useMemo(
+    () => contrastRatio(theme.accent, "#ffffff"),
+    [theme.accent]
+  );
+  const accentFailsAa = accentOnWhite < 4.5;
+
+  const updateTheme = (values: Partial<SiteTheme>) => {
+    const next = sanitizeTheme({ ...theme, ...values });
+    setPreview(next);
+    setSettings({ ...settings, theme: next });
+  };
+
+  const resetTheme = () => {
+    setPreview(null);
+    patch({ theme: { ...THEME_DEFAULTS } });
+    setSettings({ ...settings, theme: { ...THEME_DEFAULTS } });
+  };
 
   const patchAddress = (values: Partial<SiteSettings["address"]>) =>
     setDraft((current) => ({
@@ -54,7 +87,7 @@ export default function SettingsManager({
       const res = await fetch("/api/admin/content/site/1", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(draft),
+        body: JSON.stringify({ ...draft, theme }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -65,6 +98,7 @@ export default function SettingsManager({
       const saved = data as SiteSettings;
       setDraft(saved);
       setSettings(saved);
+      setPreview(null);
       setMessage("Settings saved. The whole site now uses these values.");
       router.refresh();
     } catch (err) {
@@ -77,6 +111,7 @@ export default function SettingsManager({
   const reset = async () => {
     setDraft(initialSettings);
     setSettings(initialSettings);
+    setPreview(null);
     await refresh();
     setMessage("Reverted to the last saved values.");
   };
@@ -101,6 +136,137 @@ export default function SettingsManager({
         <StatusMessage message={message} />
 
         <div className="mt-4 grid gap-5 md:grid-cols-2">
+          <FormSection
+            title="Theme colors"
+            description="Repaints buttons, links, headings and section backgrounds across the whole site."
+            icon="bi-palette"
+          >
+            <div className="grid gap-5 md:grid-cols-2">
+              <Field
+                label="Accent color"
+                hint="Buttons, links, icons and highlights."
+              >
+                <ColorInput
+                  value={theme.accent}
+                  onChange={(v) => updateTheme({ accent: v })}
+                />
+              </Field>
+
+              <Field
+                label="Heading color"
+                hint="Every h1–h6 on the site."
+              >
+                <ColorInput
+                  value={theme.heading}
+                  onChange={(v) => updateTheme({ heading: v })}
+                />
+              </Field>
+
+              <Field
+                label="Body text color"
+                hint="Paragraphs and general copy."
+              >
+                <ColorInput
+                  value={theme.text}
+                  onChange={(v) => updateTheme({ text: v })}
+                />
+              </Field>
+
+              <Field
+                label="Alt section background"
+                hint="The tinted band behind alternate sections."
+              >
+                <ColorInput
+                  value={theme.lightBg}
+                  onChange={(v) => updateTheme({ lightBg: v })}
+                />
+              </Field>
+            </div>
+
+            {/* Live swatch preview */}
+            <div className="mt-5 overflow-hidden rounded-xl border border-black/[.08]">
+              <div
+                className="flex flex-wrap items-center gap-3 px-5 py-4"
+                style={{ background: theme.lightBg }}
+              >
+                <span className="text-xl font-bold" style={{ color: theme.heading }}>
+                  Preview heading
+                </span>
+                <span style={{ color: theme.text }}>
+                  Body copy on the tinted band
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 bg-white px-5 py-4">
+                <span
+                  className="rounded-lg px-4 py-2 text-sm font-semibold"
+                  style={{
+                    background: theme.accent,
+                    color: themeCssVars(theme)["--on-accent"],
+                  }}
+                >
+                  Primary button
+                </span>
+                <span className="text-sm font-medium" style={{ color: theme.accent }}>
+                  Accent link
+                </span>
+                <span
+                  className="rounded-full px-3 py-1 text-xs font-semibold"
+                  style={{ background: theme.accent, color: themeCssVars(theme)["--on-accent"] }}
+                >
+                  Badge
+                </span>
+                {preview ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPreview(null);
+                      setSettings({
+                        ...settings,
+                        theme: sanitizeTheme(initialSettings.theme),
+                      });
+                    }}
+                    className="ml-auto text-xs font-semibold text-[rgba(33,37,41,0.55)] underline transition hover:text-accent"
+                  >
+                    Discard preview
+                  </button>
+                ) : (
+                  <span className="ml-auto text-xs text-[rgba(33,37,41,0.55)]">
+                    Showing saved colors
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <span
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold ${
+                  accentFailsAa
+                    ? "bg-amber-100 text-amber-800"
+                    : "bg-emerald-100 text-emerald-700"
+                }`}
+              >
+                <i className={`bi ${accentFailsAa ? "bi-exclamation-triangle" : "bi-check-circle"}`}></i>
+                Accent on white: {accentOnWhite.toFixed(2)}:1
+                {accentFailsAa ? " — below WCAG AA for small text" : " — passes AA"}
+              </span>
+
+              <Button
+                variant="secondary"
+                disabled={busy}
+                onClick={resetTheme}
+              >
+                <i className="bi bi-arrow-counterclockwise"></i>
+                Reset palette
+              </Button>
+
+              {isDefaultTheme(theme) ? null : (
+                <span className="text-xs text-[rgba(33,37,41,0.6)]">
+                  Previewing — hit Save settings to keep it.
+                </span>
+              )}
+            </div>
+          </FormSection>
+
           <FormSection
             title="Brand identity"
             description="Shown in the header, footer, page titles and social previews."

@@ -132,7 +132,7 @@ export default async function ContactPage() {
         className="relative overflow-hidden py-16 text-white lg:py-20"
         style={{
           background:
-            "linear-gradient(155deg, #0a5fb8 0%, #0a4fa0 45%, #073b73 100%)",
+            "linear-gradient(155deg, var(--brand-accent) 0%, var(--brand-accent-deep) 45%, var(--brand-accent-deepest) 100%)",
         }}
       >
         <div
@@ -174,7 +174,7 @@ export default async function ContactPage() {
                     >
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-xl text-[#0a69ca] transition-transform duration-300 group-hover:scale-110">
+                    <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-xl text-[var(--brand-accent-deep)] transition-transform duration-300 group-hover:scale-110">
                       <i className={`bi ${step.icon}`}></i>
                     </span>
                     <h3 className="mb-2 text-lg font-bold text-white">
@@ -197,7 +197,7 @@ export default async function ContactPage() {
                 </span>
                 <Link
                   href="/projects"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#0a5fb8] transition-all duration-300 hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[var(--brand-accent-deep)] transition-all duration-300 hover:-translate-y-0.5"
                 >
                   <i className="bi bi-collection-play"></i>
                   View our projects
