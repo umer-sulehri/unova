@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "siteName": "UNOVA",
+    "tagline": "UI/UX design, web development & digital marketing agency in Lahore, Pakistan",
+    "description": "UNOVA is a Lahore-based digital agency delivering UI/UX design, web development, graphic design, SEO and social media marketing for brands that want to stand out.",
+    "logo": "/img/UNOVA.png",
+    "favicon": "/uploads/unova-favicon-mure1t4c.png",
+    "appleIcon": "/uploads/unova-favicon-mure2o66.png",
+    "ogImage": "/opengraph-image",
+    "phone": "+92 309 4785572",
+    "whatsapp": "923094785572",
+    "email": "connectunova@gmail.com",
+    "address": {
+      "street": "Arooj Center, Fareed Kot Road",
+      "city": "Lahore",
+      "region": "Punjab",
+      "postalCode": "54660",
+      "country": "Pakistan",
+      "countryCode": "PK"
+    },
+    "businessHours": "Mon – Sat, 10:00 AM – 7:00 PM",
+    "mapUrl": "",
+    "showTeamSection": true,
+    "socials": {
+      "facebook": "",
+      "instagram": "",
+      "linkedin": "",
+      "youtube": "",
+      "behance": "",
+      "dribbble": "",
+      "x": ""
+    }
+  }
+]

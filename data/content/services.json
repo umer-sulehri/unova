@@ -1,0 +1,701 @@
+[
+  {
+    "id": 1,
+    "slug": "ui-ux",
+    "title": "UI/UX Design",
+    "icon": "bi-palette",
+    "color": "#0d83fd",
+    "tagline": "Crafting intuitive digital experiences users love.",
+    "heroTitle": "UI/UX Design Services",
+    "heroSubtitle": "User-centered design rooted in research, strategy, and innovation — interfaces that look stunning and work flawlessly.",
+    "heroImage": "/img/features-illustration-1.webp",
+    "overview": [
+      "We specialize in creating user-centered designs that not only look stunning but also provide seamless functionality.",
+      "Our UI/UX design process is grounded in research and strategy: we study your audience, map their journeys, and prototype solutions before a single line of code is written.",
+      "The result is a digital product your customers find effortless — and one that moves the needle for your business."
+    ],
+    "benefits": [
+      {
+        "icon": "bi-people",
+        "title": "Research-Driven",
+        "description": "Decisions backed by user interviews, surveys, and analytics — not guesswork."
+      },
+      {
+        "icon": "bi-phone",
+        "title": "Mobile-First",
+        "description": "Every interface designed responsive-first for flawless experiences on any device."
+      },
+      {
+        "icon": "bi-universal-access",
+        "title": "Accessible",
+        "description": "WCAG-conscious designs that welcome every user."
+      },
+      {
+        "icon": "bi-layers",
+        "title": "Design Systems",
+        "description": "Reusable components and style guides that scale with your product."
+      }
+    ],
+    "process": [
+      {
+        "title": "Discovery & Research",
+        "description": "We learn your business goals and understand your audience through interviews, surveys, and analytics."
+      },
+      {
+        "title": "Wireframing",
+        "description": "Structural blueprints are created to define optimal user flows before visual design begins."
+      },
+      {
+        "title": "Prototyping",
+        "description": "Interactive models let you test functionality and feel early, reducing costly rework later."
+      },
+      {
+        "title": "UI Design & Handoff",
+        "description": "Pixel-perfect, on-brand interfaces delivered with developer-ready specs and assets."
+      }
+    ],
+    "deliverables": [
+      "Mobile-first responsive designs",
+      "Accessibility-compliant interfaces",
+      "Design systems & style guides",
+      "Interactive prototypes",
+      "User testing reports",
+      "Ongoing design support"
+    ],
+    "tools": ["Figma", "Adobe XD", "Sketch", "Adobe Photoshop", "Miro", "Zeplin"],
+    "packages": [
+      {
+        "name": "Starter Design Sprint",
+        "tagline": "Perfect for validating a new product idea",
+        "features": [
+          "1 key screen or flow designed",
+          "Wireframes + clickable prototype",
+          "1 round of revisions"
+        ],
+        "highlighted": false
+      },
+      {
+        "name": "Full Product Design",
+        "tagline": "End-to-end design for web & mobile apps",
+        "features": [
+          "Complete user research",
+          "Design system & style guide",
+          "Unlimited revisions during sprint",
+          "Developer handoff support"
+        ],
+        "highlighted": true
+      }
+    ],
+    "faq": [
+      {
+        "question": "How long does a typical UI/UX project take?",
+        "answer": "A focused design sprint takes 1–2 weeks; full product design usually runs 4–8 weeks depending on scope."
+      },
+      {
+        "question": "Do you work with existing brand guidelines?",
+        "answer": "Absolutely. We can extend an established identity or help you evolve it as part of the project."
+      },
+      {
+        "question": "Will I get source files?",
+        "answer": "Yes — you receive full Figma/XD source files along with exported assets and specs."
+      }
+    ],
+    "relatedProjects": ["cv-builder", "unique-hair-barber-shop-website", "full-featured-ecommerce-website"]
+  },
+  {
+    "id": 2,
+    "slug": "web-development",
+    "title": "Web Development",
+    "icon": "bi-code-slash",
+    "color": "#198754",
+    "tagline": "Scalable, high-performance websites and applications.",
+    "heroTitle": "Web Development Services",
+    "heroSubtitle": "From brochure sites to complex web applications — digital solutions engineered to perform and built to grow.",
+    "heroImage": "/img/services.jpg",
+    "overview": [
+      "From simple brochure websites to complex web applications, our development team creates digital solutions that drive results.",
+      "We combine technical expertise with creative problem-solving to deliver fast, secure, and SEO-friendly products.",
+      "Whether you need an online store, a custom platform, or a marketing site, we architect it for performance and long-term growth."
+    ],
+    "benefits": [
+      {
+        "icon": "bi-lightning-charge",
+        "title": "Performance First",
+        "description": "Fast load times and optimized Core Web Vitals out of the box."
+      },
+      {
+        "icon": "bi-phone",
+        "title": "Responsive Coding",
+        "description": "Mobile-first builds tested across browsers and devices."
+      },
+      {
+        "icon": "bi-shield-check",
+        "title": "Secure by Default",
+        "description": "Hardened code, safe dependencies, and best-practice deployment."
+      },
+      {
+        "icon": "bi-graph-up-arrow",
+        "title": "SEO-Ready",
+        "description": "Clean architecture and semantic markup search engines love."
+      }
+    ],
+    "process": [
+      {
+        "title": "Planning & Architecture",
+        "description": "We define scope, select the right stack, and design the system architecture."
+      },
+      {
+        "title": "Agile Development",
+        "description": "Iterative sprints with regular demos keep you in control of progress."
+      },
+      {
+        "title": "Testing & QA",
+        "description": "Cross-browser, device, and performance testing before launch."
+      },
+      {
+        "title": "Launch & Support",
+        "description": "Smooth deployment plus ongoing maintenance options."
+      }
+    ],
+    "deliverables": [
+      "Production-ready website or application",
+      "Responsive, cross-browser build",
+      "SEO-friendly architecture",
+      "Admin/CMS where needed",
+      "Deployment & documentation",
+      "Post-launch support window"
+    ],
+    "tools": ["HTML5/CSS3", "JavaScript", "React.js", "Next.js", "Node.js", "PHP", "Laravel", "WordPress", "Shopify"],
+    "packages": [
+      {
+        "name": "Business Website",
+        "tagline": "Professional presence for growing companies",
+        "features": [
+          "Up to 8 custom pages",
+          "CMS for easy edits",
+          "On-page SEO basics",
+          "Contact forms & integrations"
+        ],
+        "highlighted": false
+      },
+      {
+        "name": "Web App / E-commerce",
+        "tagline": "Custom platforms built around your workflow",
+        "features": [
+          "Custom functionality & dashboards",
+          "Payment gateway integration",
+          "API development",
+          "Performance & security hardening"
+        ],
+        "highlighted": true
+      }
+    ],
+    "faq": [
+      {
+        "question": "Which technology stack do you recommend?",
+        "answer": "It depends on your goals — we'll propose the simplest stack that meets your performance, budget, and maintenance needs."
+      },
+      {
+        "question": "Can you take over an existing codebase?",
+        "answer": "Yes, we regularly audit, refactor, and extend projects started by other teams."
+      },
+      {
+        "question": "Do you provide hosting and domain setup?",
+        "answer": "We handle full deployment on your preferred platform and can manage hosting for you."
+      }
+    ],
+    "relatedProjects": ["cv-builder", "social-lynx", "restaurant-website-moon-grill", "full-featured-ecommerce-website"]
+  },
+  {
+    "id": 3,
+    "slug": "graphic-design",
+    "title": "Graphic Design",
+    "icon": "bi-brush",
+    "color": "#ffc107",
+    "tagline": "Visual communication that captivates.",
+    "heroTitle": "Graphic Design Services",
+    "heroSubtitle": "Compelling visual assets that communicate your brand message effectively — from print to digital.",
+    "heroImage": "/img/features-illustration-2.webp",
+    "overview": [
+      "Our graphic design team creates compelling visual assets that communicate your brand message effectively.",
+      "From print to digital, we design with purpose and precision to make your brand stand out in a crowded market.",
+      "Every deliverable is crafted to be brand-consistent, attention-grabbing, and production-ready."
+    ],
+    "benefits": [
+      {
+        "icon": "bi-bullseye",
+        "title": "Strategic Thinking",
+        "description": "Design decisions tied to your brand goals and audience."
+      },
+      {
+        "icon": "bi-palette2",
+        "title": "Brand-Consistent",
+        "description": "Cohesive visuals across every touchpoint."
+      },
+      {
+        "icon": "bi-printer",
+        "title": "Print-Ready Files",
+        "description": "Correct color profiles, bleeds, and formats for any printer."
+      },
+      {
+        "icon": "bi-lightning",
+        "title": "Fast Turnaround",
+        "description": "Streamlined process with clear timelines."
+      }
+    ],
+    "process": [
+      {
+        "title": "Brief & Discovery",
+        "description": "We clarify objectives, audience, and style direction."
+      },
+      {
+        "title": "Concepts",
+        "description": "Initial design directions presented for feedback."
+      },
+      {
+        "title": "Refinement",
+        "description": "Chosen concept polished through revision rounds."
+      },
+      {
+        "title": "Delivery",
+        "description": "Final files delivered in all required formats."
+      }
+    ],
+    "deliverables": [
+      "Logo design & brand marks",
+      "Business cards, brochures & flyers",
+      "Social media posts, banners & ads",
+      "Product packaging design",
+      "Source files & export formats"
+    ],
+    "tools": ["Adobe Photoshop", "Adobe Illustrator", "Adobe InDesign", "Figma", "Canva"],
+    "packages": [
+      {
+        "name": "Essentials Pack",
+        "tagline": "Core assets for new brands",
+        "features": [
+          "Logo design",
+          "Business card & letterhead",
+          "3 social media templates"
+        ],
+        "highlighted": false
+      },
+      {
+        "name": "Brand Studio",
+        "tagline": "Full creative support month after month",
+        "features": [
+          "Unlimited design requests queue",
+          "Print + digital collateral",
+          "Packaging & merchandise design"
+        ],
+        "highlighted": true
+      }
+    ],
+    "faq": [
+      {
+        "question": "What file formats will I receive?",
+        "answer": "You receive print-ready PDFs plus PNG/JPG exports and editable source files (AI/PSD/Figma)."
+      },
+      {
+        "question": "How many revisions are included?",
+        "answer": "Each package includes defined revision rounds — typically enough to land exactly where you want."
+      }
+    ],
+    "relatedProjects": ["renkli-paints", "unique-sneakers-shoe-store", "bootstrap-business-website"]
+  },
+  {
+    "id": 4,
+    "slug": "social-media",
+    "title": "Social Media Management",
+    "icon": "bi-megaphone",
+    "color": "#0dcaf0",
+    "tagline": "Strategic social media that grows your business.",
+    "heroTitle": "Social Media Management",
+    "heroSubtitle": "Data-driven strategies that build relationships, increase awareness, and generate leads.",
+    "heroImage": "/img/features-illustration-3.webp",
+    "overview": [
+      "In today's digital landscape, social media is more than just posting content — it's about building relationships and driving engagement.",
+      "Our social media experts create data-driven strategies that increase brand awareness and generate leads.",
+      "We handle everything from content calendars to community management and paid campaigns."
+    ],
+    "benefits": [
+      {
+        "icon": "bi-calendar-week",
+        "title": "Consistent Presence",
+        "description": "Planned, on-brand content published on schedule."
+      },
+      {
+        "icon": "bi-chat-heart",
+        "title": "Community Building",
+        "description": "Real engagement that turns followers into customers."
+      },
+      {
+        "icon": "bi-cash-coin",
+        "title": "ROI-Focused Ads",
+        "description": "Targeted campaigns optimized for measurable returns."
+      },
+      {
+        "icon": "bi-bar-chart-line",
+        "title": "Transparent Reporting",
+        "description": "Clear monthly reports on growth and performance."
+      }
+    ],
+    "process": [
+      {
+        "title": "Audit & Strategy",
+        "description": "We review your channels and craft a platform-specific strategy."
+      },
+      {
+        "title": "Content Calendar",
+        "description": "A monthly plan of posts, stories, and campaigns for approval."
+      },
+      {
+        "title": "Publishing & Engagement",
+        "description": "We publish content and actively engage your community."
+      },
+      {
+        "title": "Analyze & Optimize",
+        "description": "Performance reviews steer next month's plan for compounding growth."
+      }
+    ],
+    "deliverables": [
+      "Monthly content calendar",
+      "Designed posts, stories & reels",
+      "Community management",
+      "Paid ad campaign management",
+      "Monthly analytics report"
+    ],
+    "tools": ["Meta Business Suite", "Instagram", "LinkedIn", "X (Twitter)", "TikTok", "Buffer"],
+    "packages": [
+      {
+        "name": "Basic Package",
+        "tagline": "For startups and small businesses",
+        "features": [
+          "3 posts per week",
+          "Platform management",
+          "Monthly analytics report"
+        ],
+        "highlighted": false
+      },
+      {
+        "name": "Premium Package",
+        "tagline": "For businesses ready to scale",
+        "features": [
+          "Daily posts & stories",
+          "Paid ad management",
+          "Weekly strategy calls",
+          "Influencer outreach"
+        ],
+        "highlighted": true
+      }
+    ],
+    "faq": [
+      {
+        "question": "Which platforms should my business be on?",
+        "answer": "We recommend based on where your audience actually spends time — most B2C brands start with Instagram/Facebook, B2B with LinkedIn."
+      },
+      {
+        "question": "Do you create the content too?",
+        "answer": "Yes — copywriting, graphic design, and short-form video editing are all included."
+      }
+    ],
+    "relatedProjects": ["social-lynx", "unique-hair-barber-shop-website", "renkli-paints"]
+  },
+  {
+    "id": 5,
+    "slug": "cms",
+    "title": "Custom CMS Solutions",
+    "icon": "bi-layout-text-sidebar",
+    "color": "#6c757d",
+    "tagline": "Tailored content management for your business.",
+    "heroTitle": "Custom CMS Solutions",
+    "heroSubtitle": "Complete control over your website content — intuitive, secure, and designed specifically for your needs.",
+    "heroImage": "/img/illustration-1.webp",
+    "overview": [
+      "We build custom content management systems that give you complete control over your website without compromising on design or functionality.",
+      "Our CMS solutions are intuitive, secure, and designed specifically for your content needs — no bloated plugins or features you'll never use.",
+      "Edit pages, publish posts, and manage media with an admin experience your team will actually enjoy."
+    ],
+    "benefits": [
+      {
+        "icon": "bi-speedometer2",
+        "title": "Tailored Dashboard",
+        "description": "Built around your exact workflow, not a generic template."
+      },
+      {
+        "icon": "bi-person-gear",
+        "title": "Roles & Permissions",
+        "description": "Granular access control for teams of any size."
+      },
+      {
+        "icon": "bi-images",
+        "title": "Media Management",
+        "description": "Organized, searchable asset libraries."
+      },
+      {
+        "icon": "bi-search",
+        "title": "Built-in SEO Tools",
+        "description": "Metadata, sitemaps, and redirects managed in one place."
+      }
+    ],
+    "process": [
+      {
+        "title": "Content Audit",
+        "description": "We map what content you have and how it needs to be structured."
+      },
+      {
+        "title": "System Design",
+        "description": "Content models and admin workflows designed for your team."
+      },
+      {
+        "title": "Build & Migrate",
+        "description": "Development plus migration of your existing content."
+      },
+      {
+        "title": "Training & Handover",
+        "description": "Your team trained with documentation for confident day-one use."
+      }
+    ],
+    "deliverables": [
+      "Custom admin dashboard",
+      "User roles & permissions",
+      "Media management module",
+      "Content migration",
+      "Team training session",
+      "Documentation"
+    ],
+    "tools": ["Laravel", "Next.js", "WordPress", "Strapi", "MySQL", "PostgreSQL"],
+    "packages": [
+      {
+        "name": "Lightweight CMS",
+        "tagline": "Simple editing for brochure sites",
+        "features": [
+          "Page & post editing",
+          "Media library",
+          "Basic SEO fields"
+        ],
+        "highlighted": false
+      },
+      {
+        "name": "Enterprise CMS",
+        "tagline": "Multi-user, multi-language platforms",
+        "features": [
+          "Custom content models",
+          "Workflow approvals",
+          "Multi-language support",
+          "Integrations & APIs"
+        ],
+        "highlighted": true
+      }
+    ],
+    "faq": [
+      {
+        "question": "Custom CMS or WordPress?",
+        "answer": "WordPress suits many sites; we recommend custom when you need specific workflows, tighter security, or cleaner long-term maintenance."
+      },
+      {
+        "question": "Can non-technical staff use it?",
+        "answer": "Yes — usability is a core requirement. We train your team until they're comfortable."
+      }
+    ],
+    "relatedProjects": ["cv-builder", "social-lynx", "bootstrap-business-website"]
+  },
+  {
+    "id": 6,
+    "slug": "seo",
+    "title": "SEO & Optimization",
+    "icon": "bi-search",
+    "color": "#212529",
+    "tagline": "Increase visibility & drive qualified traffic.",
+    "heroTitle": "SEO & Optimization Services",
+    "heroSubtitle": "Sustainable, white-hat strategies that improve rankings and turn traffic into revenue.",
+    "heroImage": "/img/about-2.webp",
+    "overview": [
+      "Our SEO services go beyond keywords to deliver comprehensive optimization strategies that improve your search rankings and drive targeted traffic.",
+      "We focus on sustainable, white-hat techniques that deliver long-term results instead of risky shortcuts.",
+      "From technical audits to conversion optimization, we make sure your site performs at every level."
+    ],
+    "benefits": [
+      {
+        "icon": "bi-rocket-takeoff",
+        "title": "Faster Load Times",
+        "description": "Page speed improvements that boost rankings and UX."
+      },
+      {
+        "icon": "bi-keyword",
+        "title": "Right Keywords",
+        "description": "Target terms your buyers actually search for."
+      },
+      {
+        "icon": "bi-link-45deg",
+        "title": "Quality Backlinks",
+        "description": "White-hat link building that compounds over time."
+      },
+      {
+        "icon": "bi-funnel",
+        "title": "Higher Conversions",
+        "description": "CRO turns the traffic you earn into customers."
+      }
+    ],
+    "process": [
+      {
+        "title": "Technical Audit",
+        "description": "Full crawl to identify and prioritize website issues."
+      },
+      {
+        "title": "Keyword Strategy",
+        "description": "Research mapping search terms to pages and intent."
+      },
+      {
+        "title": "On-Page Optimization",
+        "description": "Content, metadata, and structure improvements rolled out."
+      },
+      {
+        "title": "Measure & Iterate",
+        "description": "Analytics dashboards track wins and guide ongoing work."
+      }
+    ],
+    "deliverables": [
+      "Technical SEO audit report",
+      "Keyword research document",
+      "On-page optimizations",
+      "Link building campaign",
+      "Analytics setup & dashboard",
+      "Monthly performance report"
+    ],
+    "tools": ["Google Analytics", "Google Search Console", "Ahrefs", "SEMrush", "PageSpeed Insights", "Screaming Frog"],
+    "packages": [
+      {
+        "name": "SEO Starter",
+        "tagline": "Get the fundamentals right",
+        "features": [
+          "Technical audit + fixes",
+          "Keyword research",
+          "On-page optimization"
+        ],
+        "highlighted": false
+      },
+      {
+        "name": "Growth SEO",
+        "tagline": "Ongoing ranking & revenue growth",
+        "features": [
+          "Everything in Starter",
+          "Content strategy & briefs",
+          "Link building campaigns",
+          "Monthly reporting calls"
+        ],
+        "highlighted": true
+      }
+    ],
+    "faq": [
+      {
+        "question": "How soon will I see results?",
+        "answer": "Technical fixes show impact within weeks; competitive keyword rankings typically improve over 3–6 months."
+      },
+      {
+        "question": "Do you guarantee #1 rankings?",
+        "answer": "No honest agency can — we commit to transparent process, measurable growth, and white-hat methods only."
+      }
+    ],
+    "relatedProjects": ["restaurant-website-moon-grill", "unique-hair-barber-shop-website", "bootstrap-business-website"]
+  },
+  {
+    "id": 7,
+    "slug": "branding",
+    "title": "Brand Identity",
+    "icon": "bi-star",
+    "color": "#dc3545",
+    "tagline": "Create a memorable brand that stands out.",
+    "heroTitle": "Brand Identity Services",
+    "heroSubtitle": "Comprehensive identities that communicate your values, personality, and promise.",
+    "heroImage": "/img/about-5.webp",
+    "overview": [
+      "Your brand is more than just a logo — it's the entire experience your customers have with your business.",
+      "We develop comprehensive brand identities that communicate your values, personality, and promise to your audience.",
+      "From strategy through guidelines and collateral, everything is built to make your brand unmistakable."
+    ],
+    "benefits": [
+      {
+        "icon": "bi-compass",
+        "title": "Clear Positioning",
+        "description": "Strategy that defines who you are and why it matters."
+      },
+      {
+        "icon": "bi-eyedropper",
+        "title": "Distinctive Visuals",
+        "description": "Logos, colors, and typography uniquely yours."
+      },
+      {
+        "icon": "bi-journal-bookmark",
+        "title": "Brand Guidelines",
+        "description": "Rules that keep every application consistent."
+      },
+      {
+        "icon": "bi-mic",
+        "title": "Brand Voice",
+        "description": "Messaging frameworks for how you sound everywhere."
+      }
+    ],
+    "process": [
+      {
+        "title": "Brand Strategy",
+        "description": "Workshops to define mission, values, audience, and positioning."
+      },
+      {
+        "title": "Identity Design",
+        "description": "Logo, color palette, and typography exploration and selection."
+      },
+      {
+        "title": "Asset Creation",
+        "description": "Stationery, collateral, and templates brought into the system."
+      },
+      {
+        "title": "Guidelines & Rollout",
+        "description": "A complete brand book plus launch-ready asset library."
+      }
+    ],
+    "deliverables": [
+      "Brand strategy document",
+      "Logo suite (primary, secondary, icon)",
+      "Color palette & typography system",
+      "Brand guidelines book",
+      "Business stationery set",
+      "Marketing collateral templates"
+    ],
+    "tools": ["Adobe Illustrator", "Figma", "Adobe InDesign", "Notion", "Miro"],
+    "packages": [
+      {
+        "name": "Identity Essentials",
+        "tagline": "A sharp, professional core identity",
+        "features": [
+          "Logo suite",
+          "Color & typography system",
+          "Mini style guide"
+        ],
+        "highlighted": false
+      },
+      {
+        "name": "Full Brand System",
+        "tagline": "Everything a serious brand needs",
+        "features": [
+          "Brand strategy workshops",
+          "Complete guidelines book",
+          "Stationery & collateral kit",
+          "Brand voice framework"
+        ],
+        "highlighted": true
+      }
+    ],
+    "faq": [
+      {
+        "question": "I already have a logo — can you still help?",
+        "answer": "Yes. We can refine what exists or expand it into a complete identity system."
+      },
+      {
+        "question": "What's included in brand guidelines?",
+        "answer": "Usage rules for logo, colors, type, imagery, voice, and examples across print and digital touchpoints."
+      }
+    ],
+    "relatedProjects": ["renkli-paints", "unique-sneakers-shoe-store", "unique-hair-barber-shop-website"]
+  }
+]

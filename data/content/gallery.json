@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "CV Builder",
+    "category": "Web Design",
+    "image": "/img/portfolio/portfolio-9.png"
+  },
+  {
+    "id": 2,
+    "title": "Social Lynx",
+    "category": "Branding",
+    "image": "/img/portfolio/portfolio-8.png"
+  },
+  {
+    "id": 3,
+    "title": "Unique Hair",
+    "category": "Web Design",
+    "image": "/img/portfolio/portfolio-1.png"
+  },
+  {
+    "id": 4,
+    "title": "Unique Sneakers",
+    "category": "E-commerce",
+    "image": "/img/portfolio/portfolio-2.png"
+  },
+  {
+    "id": 5,
+    "title": "Full-Featured E-commerce",
+    "category": "E-commerce",
+    "image": "/img/portfolio/portfolio-3.png"
+  },
+  {
+    "id": 6,
+    "title": "Renkli Paints",
+    "category": "Branding",
+    "image": "/img/portfolio/portfolio-4.png"
+  },
+  {
+    "id": 7,
+    "title": "Business Website",
+    "category": "Web Design",
+    "image": "/img/portfolio/portfolio-5.png"
+  },
+  {
+    "id": 8,
+    "title": "To Do List App",
+    "category": "UI/UX",
+    "image": "/img/portfolio/portfolio-6.png"
+  },
+  {
+    "id": 9,
+    "title": "Moon Grill Restaurant",
+    "category": "Web Design",
+    "image": "/img/portfolio/portfolio-7.png"
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "slug": "cv-builder",
+    "title": "CV Builder",
+    "description": "cv.toolscase.com is a free online CV builder that lets users create professional resumes using modern templates. With a simple interface, it allows easy editing and instant PDF downloads for quick and polished results.",
+    "image": "/img/portfolio/portfolio-9.png",
+    "categories": ["web"],
+    "liveUrl": "https://cv.toolscase.com/",
+    "codeUrl": "#",
+    "technologies": ["React", "JavaScript", "Bootstrap", "SQL", "PHP", "Laravel"]
+  },
+  {
+    "id": 2,
+    "slug": "social-lynx",
+    "title": "Social Lynx",
+    "description": "Social Lynx is a community connecting creators with real followers. Our service offers access to a network of global followers and subscribers interested in new social media content. Take control of your creator journey and easily grow your audience on YouTube, TikTok, Instagram, Facebook, and more.",
+    "image": "/img/portfolio/portfolio-8.png",
+    "liveUrl": "https://www.sociallynx.com/home",
+    "codeUrl": "#",
+    "categories": ["web"],
+    "technologies": ["Next.js", "JavaScript", "Bootstrap", "SQL", "Laravel"]
+  },
+  {
+    "id": 3,
+    "slug": "unique-hair-barber-shop-website",
+    "title": "Unique Hair – Barber Shop Website",
+    "description": "A modern, responsive website for a barber shop built with clean UI/UX. It showcases services, and booking options to enhance customer engagement and online presence.",
+    "image": "/img/portfolio/portfolio-1.png",
+    "liveUrl": "https://unique-hair.netlify.app/",
+    "codeUrl": "#",
+    "categories": ["web"],
+    "technologies": ["HTML/CSS", "JavaScript", "GSAP", "Bootstrap"]
+  },
+  {
+    "id": 4,
+    "slug": "unique-sneakers-shoe-store",
+    "title": "Unique Sneakers – Modern Shoe Store Website",
+    "description": "A stylish and responsive e-commerce landing page for a sneaker brand. It features product highlights, smooth animations, and a clean layout for an engaging user experience.",
+    "image": "/img/portfolio/portfolio-2.png",
+    "categories": ["web"],
+    "liveUrl": "https://unique-sneakers.netlify.app/",
+    "codeUrl": "#",
+    "technologies": ["HTML/CSS", "React", "JavaScript", "GSAP"]
+  },
+  {
+    "id": 5,
+    "slug": "restaurant-website-moon-grill",
+    "title": "Restaurant Website",
+    "description": "At Moon Grill, we're passionate about serving delicious, high-quality food made with fresh ingredients and bold flavors. Our journey began with a love for great taste and a commitment to exceptional dining experiences.",
+    "image": "/img/portfolio/portfolio-7.png",
+    "liveUrl": "https://moongrill.netlify.app/",
+    "codeUrl": "#",
+    "categories": ["web"],
+    "technologies": ["JavaScript", "Tailwind CSS", "Bootstrap", "SQL", "Laravel"]
+  },
+  {
+    "id": 6,
+    "slug": "full-featured-ecommerce-website",
+    "title": "Full-Featured E-commerce Website",
+    "description": "A complete online shopping platform for sneakers, featuring product listings, filters, cart management, and a checkout system. Designed for a smooth user experience with responsive design and modern UI.",
+    "image": "/img/portfolio/portfolio-3.png",
+    "categories": ["web"],
+    "liveUrl": "https://red-shopping-store.netlify.app",
+    "codeUrl": "#",
+    "technologies": ["Next.js", "Bootstrap"]
+  },
+  {
+    "id": 7,
+    "slug": "renkli-paints",
+    "title": "Renkli Paints",
+    "description": "Introducing Renkli Paints, a dynamic addition to Pakistan's vibrant market, established in 2024. Committed to bringing innovation and quality to every brushstroke, we're dedicated to adding color and vitality to homes and spaces across the nation.",
+    "image": "/img/portfolio/portfolio-4.png",
+    "liveUrl": "https://renklipaints.netlify.app/",
+    "codeUrl": "#",
+    "categories": ["web"],
+    "technologies": ["Bootstrap", "Tailwind CSS"]
+  },
+  {
+    "id": 8,
+    "slug": "bootstrap-business-website",
+    "title": "Bootstrap Business Website",
+    "description": "A professional business website template built with Bootstrap, featuring a clean design, responsive layout, and essential business sections like services, testimonials, and contact forms.",
+    "image": "/img/portfolio/portfolio-5.png",
+    "liveUrl": "https://inspiring-axolotl-775e87.netlify.app",
+    "codeUrl": "#",
+    "categories": ["web"],
+    "technologies": ["JavaScript", "API", "Bootstrap"]
+  },
+  {
+    "id": 9,
+    "slug": "to-do-list-app",
+    "title": "To Do List App",
+    "description": "A simple and intuitive To Do List application that allows users to add, edit, and delete tasks. It features a clean interface and local storage for task persistence.",
+    "image": "/img/portfolio/portfolio-6.png",
+    "categories": ["web"],
+    "liveUrl": "https://reminder-todo-work.netlify.app/",
+    "codeUrl": "#",
+    "technologies": ["HTML/CSS", "JavaScript", "GSAP"]
+  }
+]

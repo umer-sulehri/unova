@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Umer",
+    "role": "Co-Founder & Creative Director",
+    "image": "/img/co-founder/umer.png",
+    "bio": "Sets the visual direction and keeps every project honest about what it is trying to achieve.",
+    "order": 1
+  },
+  {
+    "id": 2,
+    "name": "Design Team",
+    "role": "UI/UX & Brand Design",
+    "image": "/img/avatar-2.webp",
+    "bio": "Interfaces, identity systems, and the documentation that keeps them consistent as you grow.",
+    "order": 2
+  },
+  {
+    "id": 3,
+    "name": "Engineering Team",
+    "role": "Web & CMS Development",
+    "image": "/img/avatar-3.webp",
+    "bio": "Front-end craft and back-end plumbing, built to be handed over and still easy to live with.",
+    "order": 3
+  },
+  {
+    "id": 4,
+    "name": "Growth Team",
+    "role": "Social Media & SEO",
+    "image": "/img/avatar-4.webp",
+    "bio": "Content calendars, campaign reporting, and the unglamorous optimisation work that compounds.",
+    "order": 4
+  }
+]

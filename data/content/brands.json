@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "CV Toolscase",
+    "logo": "/img/clients/client-1.png",
+    "website": "https://cv.toolscase.com/",
+    "description": "Free online CV builder with modern templates and instant PDF downloads."
+  },
+  {
+    "id": 2,
+    "name": "Social Lynx",
+    "logo": "/img/clients/client-2.png",
+    "website": "https://www.sociallynx.com/home",
+    "description": "A community connecting creators with real, global followers."
+  },
+  {
+    "id": 3,
+    "name": "Unique Hair",
+    "logo": "/img/clients/client-3.png",
+    "website": "https://unique-hair.netlify.app/",
+    "description": "Modern barber shop website with online booking."
+  },
+  {
+    "id": 4,
+    "name": "Moon Grill",
+    "logo": "/img/clients/client-4.png",
+    "website": "https://moongrill.netlify.app/",
+    "description": "Restaurant brand serving fresh ingredients and bold flavors."
+  },
+  {
+    "id": 5,
+    "name": "Renkli Paints",
+    "logo": "/img/clients/client-5.png",
+    "website": "https://renklipaints.netlify.app/",
+    "description": "Adding color and vitality to homes across the nation since 2024."
+  },
+  {
+    "id": 6,
+    "name": "Unique Sneakers",
+    "logo": "/img/clients/client-6.png",
+    "website": "https://unique-sneakers.netlify.app/",
+    "description": "Stylish e-commerce experience for a sneaker brand."
+  },
+  {
+    "id": 7,
+    "name": "ToolsCase",
+    "logo": "/img/clients/client-7.jpg",
+    "website": "#",
+    "description": "A growing suite of free online tools and utilities."
+  },
+  {
+    "id": 8,
+    "name": "Red Shopping Store",
+    "logo": "/img/clients/client-8.png",
+    "website": "https://red-shopping-store.netlify.app",
+    "description": "Full-featured online shopping platform for sneakers."
+  }
+]
