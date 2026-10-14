@@ -184,6 +184,8 @@ values (
 
 -- Uploads are written with the service role key (which bypasses RLS), so the
 -- only policy needed is public read access for displaying images.
-create policy if not exists "Public read access for media"
+drop policy if exists "Public read access for media" on storage.objects;
+create policy "Public read access for media"
   on storage.objects for select
   using (bucket_id = 'media');
+

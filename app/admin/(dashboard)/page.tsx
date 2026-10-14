@@ -100,10 +100,22 @@ export default async function AdminDashboardPage() {
         ></div>
         <div className="relative z-[1] flex flex-wrap items-center justify-between gap-6">
           <div>
-            <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/80">
-              <i className="bi bi-stars"></i>
-              Content overview
-            </span>
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/80">
+                <i className="bi bi-stars"></i>
+                Content overview
+              </span>
+              <span
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${
+                  storageReady
+                    ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                    : "bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                }`}
+              >
+                <span className={`h-2 w-2 rounded-full ${storageReady ? "bg-emerald-400" : "bg-amber-400"}`}></span>
+                Database: {storageReady ? "Connected" : "Not Connected"}
+              </span>
+            </div>
             <h1 className="mb-2 text-2xl font-bold text-white lg:text-3xl">
               {total} items live on your site
             </h1>
@@ -485,6 +497,7 @@ export default async function AdminDashboardPage() {
       </section>
 
       {/* Setup notes */}
+      {/* Database status */}
       <section
         className={`flex flex-wrap items-center gap-4 rounded-2xl border px-6 py-5 ${
           storageReady
@@ -499,18 +512,31 @@ export default async function AdminDashboardPage() {
               : "bg-amber-100 text-amber-700"
           }`}
         >
-          <i className={`bi ${storageReady ? "bi-cloud-check" : "bi-cloud-slash"}`}></i>
+          <i
+            className={`bi ${
+              storageReady ? "bi-database-check" : "bi-database-slash"
+            }`}
+          ></i>
         </span>
         <div className="min-w-[240px] flex-1">
-          <h2 className="mb-0 text-sm font-bold text-heading">
-            {storageReady
-              ? "Supabase storage connected"
-              : "Supabase not connected — local JSON mode"}
-          </h2>
+          <div className="flex items-center gap-2">
+            <h2 className="mb-0 text-sm font-bold text-heading">
+              Database: {storageReady ? "Connected" : "Not Connected"}
+            </h2>
+            <span
+              className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+                storageReady
+                  ? "bg-emerald-200 text-emerald-800"
+                  : "bg-amber-200 text-amber-800"
+              }`}
+            >
+              {storageReady ? "Connected" : "Not Connected"}
+            </span>
+          </div>
           <p className="mb-0 mt-1 text-xs text-[rgba(33,37,41,0.65)]">
             {storageReady
-              ? "Uploads go to the “media” bucket and are served from your Supabase CDN. Changes are saved permanently."
-              : "Content is read from and written to data/content/*.json in development, so you can work now. Run supabase/schema.sql and set NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY in .env.local before going live."}
+              ? "Supabase database and media storage are connected. All changes are saved directly to your database."
+              : "Supabase database is not connected — running in local JSON mode (data/content/*.json)."}
           </p>
         </div>
         <code className="hidden rounded-lg bg-white px-3 py-2 text-[11px] text-[rgba(33,37,41,0.6)] shadow-sm lg:block">
