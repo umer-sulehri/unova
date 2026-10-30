@@ -154,9 +154,9 @@ export default async function RootLayout({
           <Header />
           <main className="main">{children}</main>
           <Footer />
+          <WhatsAppFloat />
         </SiteSettingsProvider>
         <ScrollTop />
-        <WhatsAppFloat />
         <AosProvider />
       </body>
     </html>
