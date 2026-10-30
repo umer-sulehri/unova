@@ -62,16 +62,15 @@ export async function POST(request: NextRequest) {
       err instanceof Error
         ? err.message
         : "Could not send your message. Please try WhatsApp instead.";
-    // In production (Vercel) the filesystem is read-only and if Supabase is
-    // misconfigured we still want to fire the WhatsApp webhook/alert when
-    // possible. Return success so the user isn't blocked by storage issues.
-    if (process.env.NODE_ENV === "production" && !isSupabaseConfigured()) {
-      console.warn(
-        "[contact] Storage unavailable in production; proceeding without persisting message (WhatsApp alert will still be attempted)."
-      );
-    } else {
+    // Always try to persist if Supabase is configured; if not and we're in
+    // serverless production, still attempt to notify via WhatsApp but
+    // surface the error in logs. Don't block the user if webhook is set.
+    if (isSupabaseConfigured()) {
       return NextResponse.json({ error: message }, { status: 500 });
     }
+    console.warn(
+      "[contact] No storage configured; proceeding without persisting message (WhatsApp alert will still be attempted)."
+    );
   }
 
   const settings = await getSiteSettings();
