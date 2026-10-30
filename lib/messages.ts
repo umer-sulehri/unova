@@ -97,26 +97,54 @@ export async function createContactMessage(
       status: "new",
       createdAt: now,
     };
-    await writeFallback([created, ...messages]);
+    try {
+      await writeFallback([created, ...messages]);
+    } catch (err) {
+      console.error("[messages] Fallback write failed:", err);
+      // In serverless environments the filesystem may be read-only; still
+      // return the message so the client gets a success response and alerts
+      // can be attempted. The admin dashboard will miss it unless Supabase
+      // is configured, but this avoids a hard 500.
+      return created;
+    }
     return created;
   }
 
-  const { data, error } = await getSupabaseAdmin()
-    .from("contact_messages")
-    .insert(input)
-    .select("*")
-    .single();
+  try {
+    const { data, error } = await getSupabaseAdmin()
+      .from("contact_messages")
+      .insert({
+        name: input.name,
+        email: input.email,
+        phone: input.phone,
+        subject: input.subject,
+        budget: input.budget,
+        message: input.message,
+      })
+      .select("*")
+      .single();
 
-  if (error) {
-    console.error("[messages] Failed to save contact message:", error.message);
-    throw new Error(
-      error.code === "42P01"
-        ? "The contact_messages table does not exist yet. Run supabase/contact-messages.sql in Supabase."
-        : "Could not save your message. Please try WhatsApp instead."
-    );
+    if (error) {
+      console.error(
+        "[messages] Failed to save contact message:",
+        error.message,
+        error.code,
+        error.details,
+        error.hint
+      );
+      throw new Error(
+        error.code === "42P01"
+          ? "The contact_messages table does not exist yet. Run supabase/contact-messages.sql in Supabase."
+          : `Could not save your message (${error.message}). Please try WhatsApp instead.`
+      );
+    }
+
+    return mapRow(data);
+  } catch (err) {
+    if (err instanceof Error) throw err;
+    console.error("[messages] Unexpected error saving contact message:", err);
+    throw new Error("Could not save your message. Please try WhatsApp instead.");
   }
-
-  return mapRow(data);
 }
 
 export async function readContactMessages(): Promise<ContactMessage[]> {
