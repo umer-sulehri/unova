@@ -8,6 +8,7 @@ import { useSiteSettings } from "@/components/SiteSettingsProvider";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: "bi-speedometer2" },
+  { href: "/admin/messages", label: "Messages", icon: "bi-chat-dots" },
   { href: "/admin/projects", label: "Projects", icon: "bi-kanban" },
   { href: "/admin/services", label: "Services", icon: "bi-gear" },
   { href: "/admin/gallery", label: "Gallery", icon: "bi-images" },

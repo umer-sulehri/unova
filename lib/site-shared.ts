@@ -20,6 +20,7 @@ export function defaultSiteSettings(): SiteSettings {
     favicon: "/img/favicon.png",
     appleIcon: "/img/apple-touch-icon.png",
     ogImage: "/opengraph-image",
+    contactName: "Umer",
     phone: "+92 309 4785572",
     whatsapp: "923094785572",
     email: "connectunova@gmail.com",
@@ -61,6 +62,7 @@ export function withDefaults(
     // `?? base` so a legacy record (or an explicit null) can never hide the
     // section by accident.
     showTeamSection: stored.showTeamSection ?? base.showTeamSection,
+    contactName: stored.contactName?.trim() || base.contactName,
     // Never trust stored colors: they are written into a <style>-like context.
     theme: sanitizeTheme(stored.theme),
     address: { ...base.address, ...(stored.address ?? {}) },

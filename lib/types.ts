@@ -115,6 +115,8 @@ export interface SiteSettings {
   favicon: string;
   appleIcon: string;
   ogImage: string;
+  /** Name shown on the homepage WhatsApp contact card. */
+  contactName: string;
   phone: string;
   whatsapp: string;
   email: string;
@@ -146,6 +148,21 @@ export const COLLECTIONS = [
 ] as const;
 
 export type Collection = (typeof COLLECTIONS)[number];
+
+export type ContactMessageStatus = "new" | "read";
+
+/** A query submitted through the public contact forms. */
+export interface ContactMessage {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  budget: string;
+  message: string;
+  status: ContactMessageStatus;
+  createdAt: string;
+}
 
 export type AnyContentItem =
   | Project

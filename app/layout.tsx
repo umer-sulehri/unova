@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollTop from "@/components/ScrollTop";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 import AosProvider from "@/components/AosProvider";
 import JsonLd from "@/components/seo/JsonLd";
 import { SiteSettingsProvider } from "@/components/SiteSettingsProvider";
@@ -155,6 +156,7 @@ export default async function RootLayout({
           <Footer />
         </SiteSettingsProvider>
         <ScrollTop />
+        <WhatsAppFloat />
         <AosProvider />
       </body>
     </html>

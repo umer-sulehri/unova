@@ -1,4 +1,7 @@
-import { getSiteSettings } from "@/lib/site";
+"use client";
+
+import { useState, type FormEvent } from "react";
+import { useSiteSettings } from "@/components/SiteSettingsProvider";
 import { telHref, whatsappHref } from "@/lib/site-shared";
 
 const inputClass =
@@ -27,12 +30,44 @@ const budgets = [
   "Retainer / ongoing",
 ];
 
-/**
- * Native HTML form so it still works without client JavaScript; it posts
- * straight to the Formspree endpoint already used by the homepage section.
- */
-export default async function ContactForm() {
-  const settings = await getSiteSettings();
+type Status = { type: "success" | "error"; text: string } | null;
+
+export default function ContactForm() {
+  const { settings } = useSiteSettings();
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<Status>(null);
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const body = Object.fromEntries(new FormData(form).entries());
+    setSending(true);
+    setStatus(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) throw new Error(data.error ?? "Could not send your message.");
+      form.reset();
+      setStatus({
+        type: "success",
+        text: "Thanks! Your message has been received. We will reply within one business day.",
+      });
+    } catch (err) {
+      setStatus({
+        type: "error",
+        text:
+          err instanceof Error
+            ? err.message
+            : "Could not send your message. Please try WhatsApp instead.",
+      });
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <div
@@ -57,7 +92,7 @@ export default async function ContactForm() {
         </span>
       </div>
 
-      <form action="https://formspree.io/f/xjkogjva" method="POST">
+      <form onSubmit={submit}>
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="contact-name" className={labelClass}>
@@ -163,14 +198,35 @@ export default async function ContactForm() {
             className="hidden"
           />
 
+          {status && (
+            <p
+              role="status"
+              className={`mb-0 flex items-start gap-2 rounded-xl px-4 py-3 text-sm sm:col-span-2 ${
+                status.type === "success"
+                  ? "border border-emerald-200 bg-emerald-50 text-emerald-800"
+                  : "border border-red-200 bg-red-50 text-red-700"
+              }`}
+            >
+              <i
+                className={`bi ${
+                  status.type === "success"
+                    ? "bi-check-circle"
+                    : "bi-exclamation-triangle"
+                } mt-[2px]`}
+              ></i>
+              {status.text}
+            </p>
+          )}
+
           <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
             <button
               type="submit"
-              className="group inline-flex items-center gap-2 rounded-full px-8 py-3.5 font-medium text-white shadow-[0_10px_25px_color-mix(in_srgb,var(--brand-accent)_35%,transparent)] transition-all duration-300 hover:-translate-y-0.5"
+              disabled={sending}
+              className="group inline-flex items-center gap-2 rounded-full px-8 py-3.5 font-medium text-white shadow-[0_10px_25px_color-mix(in_srgb,var(--brand-accent)_35%,transparent)] transition-all duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
               style={{ background: "linear-gradient(135deg, var(--brand-accent) 0%, var(--brand-accent-deep) 100%)" }}
             >
-              <i className="bi bi-send-fill"></i>
-              Send Message
+              <i className={`bi ${sending ? "bi-hourglass-split" : "bi-send-fill"}`}></i>
+              {sending ? "Sending…" : "Send Message"}
               <i className="bi bi-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
             </button>
             <span className="inline-flex items-center gap-2 text-sm text-[rgba(33,37,41,0.7)]">
@@ -201,7 +257,7 @@ export default async function ContactForm() {
               className="inline-flex items-center gap-2 text-[rgba(33,37,41,0.7)] transition hover:text-[#128c4b]"
             >
               <i className="bi bi-whatsapp text-[#25d366]"></i>
-              WhatsApp
+              WhatsApp {settings.contactName}
             </a>
           )}
         </div>

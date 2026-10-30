@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { readCollection } from "@/lib/content";
+import { readContactMessages } from "@/lib/messages";
 import { formatAddress, getSiteSettings, telHref } from "@/lib/site";
 import type {
   AnyContentItem,
@@ -18,18 +19,34 @@ function newest<T extends AnyContentItem>(items: T[]) {
 }
 
 export default async function AdminDashboardPage() {
-  const [projects, services, gallery, brands, team, site] = await Promise.all([
-    readCollection("projects"),
-    readCollection("services"),
-    readCollection("gallery"),
-    readCollection("brands"),
-    readCollection("team"),
-    getSiteSettings(),
-  ]);
+  const [projects, services, gallery, brands, team, site, messages] =
+    await Promise.all([
+      readCollection("projects"),
+      readCollection("services"),
+      readCollection("gallery"),
+      readCollection("brands"),
+      readCollection("team"),
+      getSiteSettings(),
+      readContactMessages(),
+    ]);
 
   const storageReady = isSupabaseConfigured();
 
+  const newMessages = messages.filter((item) => item.status === "new").length;
+
   const cards = [
+    {
+      href: "/admin/messages",
+      label: "Messages",
+      count: messages.length,
+      icon: "bi-chat-dots",
+      tone: "#0dcaf0",
+      description: newMessages
+        ? `${newMessages} new contact ${
+            newMessages === 1 ? "query" : "queries"
+          } waiting for a reply.`
+        : "Contact form queries from the public site.",
+    },
     {
       href: "/admin/projects",
       label: "Projects",
@@ -155,7 +172,7 @@ export default async function AdminDashboardPage() {
       </section>
 
       {/* Collection cards */}
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         {cards.map((card) => (
           <Link
             key={card.href}
@@ -182,6 +199,75 @@ export default async function AdminDashboardPage() {
             </p>
           </Link>
         ))}
+      </section>
+
+      {/* Recent contact queries */}
+      <section className="rounded-2xl border border-black/[.08] bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <h2 className="mb-0 flex items-center gap-2 text-base font-bold text-heading">
+            <i className="bi bi-chat-dots text-accent"></i>
+            Latest Contact Queries
+            {newMessages > 0 && (
+              <span className="rounded-full bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-[.08em] text-white">
+                {newMessages} new
+              </span>
+            )}
+          </h2>
+          <Link
+            href="/admin/messages"
+            className="text-xs font-semibold text-accent hover:text-accent/80"
+          >
+            Open inbox
+          </Link>
+        </div>
+
+        <ul className="m-0 divide-y divide-black/[.06] list-none p-0">
+          {messages.length === 0 && (
+            <li className="py-8 text-center text-sm text-[rgba(33,37,41,0.5)]">
+              No contact queries yet. Messages sent from /contact will appear
+              here.
+            </li>
+          )}
+          {messages.slice(0, 5).map((item) => (
+            <li key={item.id} className="flex items-start gap-3 py-4">
+              <span
+                className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
+                  item.status === "new"
+                    ? "bg-accent text-white"
+                    : "bg-light-bg text-[rgba(33,37,41,0.55)]"
+                }`}
+              >
+                {item.name.charAt(0).toUpperCase() || "?"}
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="mb-0 flex flex-wrap items-center gap-2 text-sm font-semibold">
+                  {item.name}
+                  <span className="text-xs font-normal text-[rgba(33,37,41,0.45)]">
+                    {item.email}
+                  </span>
+                  {item.status === "new" && (
+                    <span className="rounded-full bg-accent/[.1] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[.08em] text-accent">
+                      New
+                    </span>
+                  )}
+                </p>
+                <p className="mb-0 truncate text-xs text-[rgba(33,37,41,0.6)]">
+                  {item.subject ? `${item.subject}: ` : ""}
+                  {item.message}
+                </p>
+              </div>
+              <span className="hidden shrink-0 text-[11px] text-[rgba(33,37,41,0.45)] sm:block">
+                {new Date(item.createdAt).toLocaleString("en-GB", {
+                  timeZone: "Asia/Karachi",
+                  day: "2-digit",
+                  month: "short",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Global site settings summary */}

@@ -1,11 +1,49 @@
 "use client";
 
 import Link from "next/link";
+import { useState, type FormEvent } from "react";
 import { useSiteSettings } from "@/components/SiteSettingsProvider";
 import { formatAddress, telHref, whatsappHref } from "@/lib/site-shared";
 
 export default function ContactSection() {
   const { settings } = useSiteSettings();
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const body = Object.fromEntries(new FormData(form).entries());
+    setSending(true);
+    setStatus(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) throw new Error(data.error ?? "Could not send your message.");
+      form.reset();
+      setStatus({
+        type: "success",
+        text: "Message sent. We will get back to you within one business day.",
+      });
+    } catch (err) {
+      setStatus({
+        type: "error",
+        text:
+          err instanceof Error
+            ? err.message
+            : "Could not send your message. Please try WhatsApp instead.",
+      });
+    } finally {
+      setSending(false);
+    }
+  };
 
   const infoItems = [
     {
@@ -78,6 +116,31 @@ export default function ContactSection() {
                 together.
               </p>
 
+              {whatsappHref(settings) && (
+                <a
+                  href={whatsappHref(settings)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mb-8 flex items-center gap-4 rounded-2xl bg-white p-4 text-[#128c4b] shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-300 hover:-translate-y-0.5"
+                >
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#25d366] text-2xl text-white">
+                    <i className="bi bi-whatsapp"></i>
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-[11px] font-bold uppercase tracking-[.14em] text-[#128c4b]/70">
+                      WhatsApp {settings.contactName}
+                    </span>
+                    <span className="block text-lg font-bold text-[#128c4b]">
+                      {settings.contactName}
+                    </span>
+                    <span className="block text-sm font-semibold text-[rgba(33,37,41,0.7)]">
+                      {settings.phone || settings.whatsapp}
+                    </span>
+                  </span>
+                  <i className="bi bi-arrow-up-right ml-auto text-lg"></i>
+                </a>
+              )}
+
               {infoItems.map((item) => (
                 <div
                   key={item.title}
@@ -106,17 +169,6 @@ export default function ContactSection() {
                   </div>
                 </div>
               ))}
-              {whatsappHref(settings) && (
-                <a
-                  href={whatsappHref(settings)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#25d366] transition hover:-translate-y-0.5"
-                >
-                  <i className="bi bi-whatsapp text-lg"></i>
-                  Chat on WhatsApp
-                </a>
-              )}
             </div>
           </div>
 
@@ -135,7 +187,7 @@ export default function ContactSection() {
                 and we&rsquo;ll get back to you as soon as possible.
               </p>
 
-              <form action="https://formspree.io/f/xjkogjva" method="POST">
+              <form onSubmit={submit}>
                 <div className="grid gap-x-6 gap-y-4 md:grid-cols-2">
                   <div>
                     <input
@@ -143,6 +195,7 @@ export default function ContactSection() {
                       name="name"
                       className="form-control"
                       placeholder="Your Name"
+                      autoComplete="name"
                       required
                     />
                   </div>
@@ -153,11 +206,22 @@ export default function ContactSection() {
                       name="email"
                       className="form-control"
                       placeholder="Your Email"
+                      autoComplete="email"
                       required
                     />
                   </div>
 
-                  <div className="md:col-span-2">
+                  <div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      className="form-control"
+                      placeholder="Phone / WhatsApp"
+                      autoComplete="tel"
+                    />
+                  </div>
+
+                  <div>
                     <input
                       type="text"
                       name="subject"
@@ -177,12 +241,43 @@ export default function ContactSection() {
                     ></textarea>
                   </div>
 
+                  <input
+                    type="text"
+                    name="_gotcha"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
+
+                  {status && (
+                    <p
+                      role="status"
+                      className={`mb-0 rounded-xl px-4 py-3 text-sm md:col-span-2 ${
+                        status.type === "success"
+                          ? "bg-emerald-50 text-emerald-800"
+                          : "bg-red-50 text-red-700"
+                      }`}
+                    >
+                      <i
+                        className={`bi ${
+                          status.type === "success"
+                            ? "bi-check-circle"
+                            : "bi-exclamation-triangle"
+                        } mr-2`}
+                      ></i>
+                      {status.text}
+                    </p>
+                  )}
+
                   <div className="text-center md:col-span-2">
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 rounded-[2rem] border-0 bg-accent px-8 py-4 text-base text-white transition duration-300 hover:bg-[#3d9cfd]"
+                      disabled={sending}
+                      className="inline-flex items-center gap-2 rounded-[2rem] border-0 bg-accent px-8 py-4 text-base text-white transition duration-300 hover:bg-[#3d9cfd] disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      Send Message
+                      <i className={`bi ${sending ? "bi-hourglass-split" : "bi-send-fill"}`}></i>
+                      {sending ? "Sending…" : "Send Message"}
                     </button>
                   </div>
                 </div>

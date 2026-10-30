@@ -353,6 +353,17 @@ export default function SettingsManager({
             icon="bi-telephone"
           >
             <div className="grid gap-5 md:grid-cols-2">
+              <Field
+                label="Contact person"
+                hint="Name shown on the homepage WhatsApp card, e.g. Umer."
+              >
+                <TextInput
+                  value={draft.contactName}
+                  onChange={(v) => patch({ contactName: v })}
+                  placeholder="Umer"
+                />
+              </Field>
+
               <Field label="Phone number" hint="Display format, e.g. +92 309 4785572.">
                 <TextInput
                   value={draft.phone}
